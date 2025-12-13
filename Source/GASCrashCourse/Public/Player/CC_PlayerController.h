@@ -9,6 +9,7 @@
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
+struct FGameplayTag;
 
 /**
  * 
@@ -16,7 +17,7 @@ struct FInputActionValue;
 UCLASS()
 class GASCRASHCOURSE_API ACC_PlayerController : public APlayerController
 {
-	GENERATED_BODY()
+ 	GENERATED_BODY()
 	
 	protected:
 	virtual void SetupInputComponent() override;
@@ -38,10 +39,21 @@ class GASCRASHCOURSE_API ACC_PlayerController : public APlayerController
 	UPROPERTY(EditDefaultsOnly , Category="Crash|Input|Abilities")
 	TObjectPtr<UInputAction> PrimaryAction;
 	
+	UPROPERTY(EditDefaultsOnly , Category="Crash|Input|Abilities")
+	TObjectPtr<UInputAction> SecondaryAction;
+	
+	UPROPERTY(EditDefaultsOnly , Category="Crash|Input|Abilities")
+	TObjectPtr<UInputAction> TertiaryAction;
+	
+	
 	void Jump();
 	void StopJumping();
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 	void Primary();
+	void Secondary();
+	void Tertiary(); 
+	
+	void ActivateAbility(const FGameplayTag& AbilityTag) const;
 	
 };
